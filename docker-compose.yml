@@ -1,0 +1,27 @@
+version: '3.3'
+
+services:
+  mysql:
+    image: mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - db
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_URL: jdbc:mysql://172.18.0.1:3306/restaurant_reservation?connectTimeout=5000
+      DATABASE_USERNAME: root
+      DATABASE_PASSWORD: root
+    ports:
+      - 8080:8080
+    depends_on:
+      - mysql
+    networks:
+      - db
+networks:
+  db:
