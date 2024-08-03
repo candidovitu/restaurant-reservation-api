@@ -14,7 +14,7 @@ public class CreateReservationDto {
 
     @NotBlank()
     @Size(min = 2, max = 100)
-    // TODO: phone validation regex pattern
+    @Pattern(regexp = "^\\+\\d{1,3}\\s?\\(?\\d{1,4}\\)?\\s?\\d{1,4}[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,9}$")
     public String phone;
 
     @NotNull()
